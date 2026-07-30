@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../theme/app_theme.dart';
+import 'contact_form.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
@@ -62,6 +63,8 @@ class ContactSection extends StatelessWidget {
                       ))
                   .toList(),
             ),
+          const SizedBox(height: 48),
+          const ContactForm(),
           const SizedBox(height: 48),
           const Divider(color: AppTheme.darkBrown),
           const SizedBox(height: 24),
