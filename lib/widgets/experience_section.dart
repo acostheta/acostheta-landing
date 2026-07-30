@@ -6,20 +6,20 @@ class ExperienceSection extends StatelessWidget {
 
   static const _experiences = [
     _Experience(
-      role: 'Flutter Developer (Mobile & AI-Assisted)',
-      company: 'Progrese Asesoría · México (Remoto)',
       period: '12/2025 – 07/2026',
+      role: 'Flutter Developer',
+      subtitle: 'Progrese Asesoría · México (Remoto)',
       bullets: [
         'Apps multiplataforma Android/Web con Flutter, Dart, Riverpod y Supabase.',
-        'Orquestación de agentes IA (Gemini, DeepSeek, GLM) para co-creación de código.',
+        'Orquestación de agentes IA para co-creación de código y debugging.',
         'Auto-QA con casos de prueba detallados previo a releases.',
         'Despliegue de PWAs y builds para Google Play Store.',
       ],
     ),
     _Experience(
-      role: 'Web & No-Code Developer',
-      company: 'Progrese Asesoría · México (Remoto)',
       period: '10/2024 – 12/2025',
+      role: 'Web & No-Code Developer',
+      subtitle: 'Progrese Asesoría · México (Remoto)',
       bullets: [
         'Soluciones empresariales con Google AppSheet.',
         'Auto-verificación de flujos de trabajo y recolección de datos.',
@@ -27,9 +27,9 @@ class ExperienceSection extends StatelessWidget {
       ],
     ),
     _Experience(
-      role: 'QA Analyst',
-      company: 'Alaxatech · Remoto',
       period: '07/2023 – 06/2024',
+      role: 'QA Analyst',
+      subtitle: 'Alaxatech · Remoto',
       bullets: [
         'Gestión de planes de prueba end-to-end en Trello.',
         'Documentación funcional y especificación de casos de prueba.',
@@ -37,9 +37,9 @@ class ExperienceSection extends StatelessWidget {
       ],
     ),
     _Experience(
-      role: 'Coordinator & Adult Volunteer',
-      company: 'Asociación de Scouts de Venezuela',
       period: '11/2020 – Presente',
+      role: 'Coordinator & Adult Volunteer',
+      subtitle: 'Asociación de Scouts de Venezuela',
       bullets: [
         'Gestión de logística y control de calidad educativa.',
         'Seguimiento de planes de trabajo con principios ágiles.',
@@ -50,35 +50,22 @@ class ExperienceSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 64),
-      color: AppTheme.surface,
+      padding: const EdgeInsets.fromLTRB(32, 80, 32, 80),
+      color: AppTheme.white,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Experiencia Profesional',
+            'Experience',
             style: Theme.of(context).textTheme.headlineMedium,
           ),
-          const SizedBox(height: 8),
-          Text(
-            'Trayectoria demostrable en desarrollo, QA y gestión',
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-          const SizedBox(height: 32),
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 700),
-            child: ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: _experiences.length,
-              separatorBuilder: (_, __) => const SizedBox(height: 8),
-              itemBuilder: (context, index) {
-                return _ExperienceCard(
-                  experience: _experiences[index],
-                  isLast: index == _experiences.length - 1,
-                );
-              },
-            ),
-          ),
+          const SizedBox(height: 40),
+          ..._experiences.asMap().entries.map((e) {
+            return _ExperienceBlock(
+              experience: e.value,
+              isLast: e.key == _experiences.length - 1,
+            );
+          }),
         ],
       ),
     );
@@ -86,77 +73,60 @@ class ExperienceSection extends StatelessWidget {
 }
 
 class _Experience {
-  final String role;
-  final String company;
   final String period;
+  final String role;
+  final String subtitle;
   final List<String> bullets;
   const _Experience({
-    required this.role,
-    required this.company,
     required this.period,
+    required this.role,
+    required this.subtitle,
     required this.bullets,
   });
 }
 
-class _ExperienceCard extends StatelessWidget {
+class _ExperienceBlock extends StatelessWidget {
   final _Experience experience;
   final bool isLast;
 
-  const _ExperienceCard({required this.experience, required this.isLast});
+  const _ExperienceBlock({required this.experience, required this.isLast});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Column(
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 16,
-              height: 16,
-              decoration: const BoxDecoration(
-                color: AppTheme.primary,
-                shape: BoxShape.circle,
+            SizedBox(
+              width: 120,
+              child: Text(
+                experience.period,
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  color: AppTheme.darkBrown,
+                  letterSpacing: 0.5,
+                ),
               ),
             ),
-            if (!isLast)
-              Container(
-                width: 2,
-                height: 80,
-                color: AppTheme.primary.withOpacity(0.3),
-              ),
-          ],
-        ),
-        const SizedBox(width: 16),
-        Expanded(
-          child: Card(
-            elevation: 2,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            child: Padding(
-              padding: const EdgeInsets.all(20),
+            const SizedBox(width: 24),
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(experience.role,
-                      style: Theme.of(context).textTheme.titleLarge),
-                  const SizedBox(height: 4),
-                  Row(
-                    children: [
-                      Icon(Icons.business, size: 14, color: Colors.grey.shade600),
-                      const SizedBox(width: 4),
-                      Text(experience.company,
-                          style: Theme.of(context).textTheme.bodyMedium),
-                    ],
+                  Text(
+                    experience.role,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  const SizedBox(height: 4),
-                  Row(
-                    children: [
-                      Icon(Icons.calendar_today, size: 14, color: Colors.grey.shade600),
-                      const SizedBox(width: 4),
-                      Text(experience.period,
-                          style: Theme.of(context).textTheme.bodyMedium),
-                    ],
+                  const SizedBox(height: 2),
+                  Text(
+                    experience.subtitle,
+                    style: const TextStyle(
+                      fontSize: 13,
+                      color: AppTheme.darkBrown,
+                    ),
                   ),
                   const SizedBox(height: 12),
                   ...experience.bullets.map(
@@ -165,8 +135,24 @@ class _ExperienceCard extends StatelessWidget {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('• ', style: TextStyle(color: AppTheme.primary)),
-                          Expanded(child: Text(b, style: Theme.of(context).textTheme.bodyMedium)),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 7),
+                            child: Container(
+                                width: 6,
+                                height: 6,
+                                color: AppTheme.olive),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              b,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: AppTheme.darkBrown,
+                                height: 1.5,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -174,8 +160,9 @@ class _ExperienceCard extends StatelessWidget {
                 ],
               ),
             ),
-          ),
+          ],
         ),
+        if (!isLast) const Divider(color: AppTheme.beige, height: 48),
       ],
     );
   }

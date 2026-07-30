@@ -4,110 +4,105 @@ import '../theme/app_theme.dart';
 class ServicesSection extends StatelessWidget {
   const ServicesSection({super.key});
 
+  static const _services = [
+    _Service(
+      number: '01',
+      title: 'Mobile App\nDevelopment',
+      desc:
+          'Apps nativas y PWA con Flutter, integración de backend con Supabase o Firebase, autenticación, y despliegue en Play Store y web.',
+    ),
+    _Service(
+      number: '02',
+      title: 'QA &\nTesting',
+      desc:
+          'Diseño y ejecución de casos de prueba funcionales, regresión, integración y UI/UX. Control de calidad end-to-end con reportes.',
+    ),
+    _Service(
+      number: '03',
+      title: 'AI-Assisted\nPrototyping',
+      desc:
+          'Prototipado rápido asistido por IA Generativa. De la idea a MVP funcional en tiempo récord con código limpio y escalable.',
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 64),
+      padding: const EdgeInsets.fromLTRB(32, 80, 32, 80),
+      color: AppTheme.cream,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Servicios Especializados',
+            'Services',
             style: Theme.of(context).textTheme.headlineMedium,
           ),
-          const SizedBox(height: 8),
-          Text(
-            'Soluciones integrales para llevar tu idea al siguiente nivel',
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-          const SizedBox(height: 32),
-          LayoutBuilder(
-            builder: (context, constraints) {
-              final crossAxisCount = constraints.maxWidth > 800 ? 3 : 1;
-              return GridView.count(
-                crossAxisCount: crossAxisCount,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
-                childAspectRatio: 1,
-                children: const [
-                  _ServiceCard(
-                    icon: Icons.phone_android,
-                    title: 'Mobile App Development',
-                    description:
-                        'Apps nativas y PWA con Flutter, integración de '
-                        'backend con Supabase/Firebase, autenticación, '
-                        'y despliegue en Play Store y web.',
-                  ),
-                  _ServiceCard(
-                    icon: Icons.bug_report,
-                    title: 'QA & Testing',
-                    description:
-                        'Diseño y ejecución de casos de prueba funcionales, '
-                        'regresión, integración y UI/UX. Control de calidad '
-                        'end-to-end con reportes en Trello.',
-                  ),
-                  _ServiceCard(
-                    icon: Icons.auto_awesome,
-                    title: 'AI-Assisted Prototyping',
-                    description:
-                        'Prototipado rápido asistido por IA Generativa. '
-                        'De la idea a MVP funcional en tiempo récord '
-                        'con código limpio y escalable.',
-                  ),
-                ],
-              );
-            },
-          ),
+          const SizedBox(height: 40),
+          ..._services.map((s) => _ServiceRow(service: s)),
         ],
       ),
     );
   }
 }
 
-class _ServiceCard extends StatelessWidget {
-  final IconData icon;
+class _Service {
+  final String number;
   final String title;
-  final String description;
-
-  const _ServiceCard({
-    required this.icon,
+  final String desc;
+  const _Service({
+    required this.number,
     required this.title,
-    required this.description,
+    required this.desc,
   });
+}
+
+class _ServiceRow extends StatelessWidget {
+  final _Service service;
+  const _ServiceRow({required this.service});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: AppTheme.primary.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(12),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 32),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 48,
+                child: Text(
+                  service.number,
+                  style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w700,
+                    color: AppTheme.beige,
+                    height: 1,
+                  ),
+                ),
               ),
-              child: Icon(icon, size: 36, color: AppTheme.primary),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              title,
-              style: Theme.of(context).textTheme.titleLarge,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              description,
-              style: Theme.of(context).textTheme.bodyMedium,
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
+              const SizedBox(width: 24),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      service.title,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      service.desc,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const Divider(color: AppTheme.beige, height: 32),
+        ],
       ),
     );
   }

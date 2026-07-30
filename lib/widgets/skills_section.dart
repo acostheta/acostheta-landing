@@ -5,78 +5,84 @@ class SkillsSection extends StatelessWidget {
   const SkillsSection({super.key});
 
   static const _skills = [
-    ('Flutter', Icons.phone_android, 'Mobile & Web'),
-    ('Dart', Icons.code, 'Lenguaje'),
-    ('Supabase', Icons.storage, 'Backend & Auth'),
-    ('Firebase', Icons.local_fire_department, 'Backend & Hosting'),
-    ('Riverpod', Icons.alt_route, 'State Management'),
-    ('Gemini AI', Icons.auto_awesome, 'AI Ecosystem'),
-    ('DeepSeek', Icons.psychology, 'AI Ecosystem'),
-    ('QA Testing', Icons.bug_report, 'Testing & QA'),
-    ('Git/GitHub', Icons.source, 'Version Control'),
-    ('Project Mgmt', Icons.assignment, 'Management'),
+    ('Flutter', 'Framework'),
+    ('Dart', 'Language'),
+    ('Supabase', 'Backend'),
+    ('Firebase', 'Backend'),
+    ('Riverpod', 'State'),
+    ('Gemini AI', 'AI Tools'),
+    ('DeepSeek', 'AI Tools'),
+    ('QA Testing', 'Testing'),
+    ('Git/GitHub', 'DevOps'),
+    ('Project Mgmt', 'Management'),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 64),
-      color: AppTheme.surface,
+      padding: const EdgeInsets.fromLTRB(32, 80, 32, 80),
+      color: AppTheme.white,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Tech Stack & Habilidades',
+            'Stack',
             style: Theme.of(context).textTheme.headlineMedium,
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 4),
           Text(
-            'Tecnologías y herramientas que uso para construir soluciones sólidas',
+            'Tecnologías y herramientas que uso',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
-          const SizedBox(height: 32),
+          const SizedBox(height: 40),
           Wrap(
-            spacing: 16,
-            runSpacing: 16,
-            alignment: WrapAlignment.center,
-            children: _skills.map((s) => _SkillCard(s.$1, s.$2, s.$3)).toList(),
+            spacing: 0,
+            runSpacing: 0,
+            children: _skills.asMap().entries.map((e) {
+              return _buildRow(context, e.key, e.value.$1, e.value.$2);
+            }).toList(),
           ),
         ],
       ),
     );
   }
-}
 
-class _SkillCard extends StatelessWidget {
-  final String name;
-  final IconData icon;
-  final String category;
-
-  const _SkillCard(this.name, this.icon, this.category);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 140,
-      child: Card(
-        elevation: 2,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+  Widget _buildRow(BuildContext context, int index, String name, String cat) {
+    final isEven = index.isEven;
+    return Container(
+      width: 200,
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 12),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: AppTheme.beige.withOpacity(0.4)),
+          right: isEven
+              ? BorderSide(color: AppTheme.beige.withOpacity(0.4))
+              : BorderSide.none,
+        ),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 4,
+            height: 4,
+            color: AppTheme.olive,
+          ),
+          const SizedBox(width: 12),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(icon, size: 32, color: AppTheme.primary),
-              const SizedBox(height: 8),
               Text(name,
                   style: const TextStyle(
-                      fontWeight: FontWeight.w600, fontSize: 13)),
-              const SizedBox(height: 4),
-              Text(category,
-                  style: TextStyle(
-                      fontSize: 11, color: Colors.grey.shade600)),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
+                      color: AppTheme.nearBlack)),
+              const SizedBox(height: 2),
+              Text(cat,
+                  style: const TextStyle(
+                      fontSize: 12, color: AppTheme.darkBrown)),
             ],
           ),
-        ),
+        ],
       ),
     );
   }
