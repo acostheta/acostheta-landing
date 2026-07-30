@@ -104,6 +104,7 @@ class _ExperienceBlock extends StatelessWidget {
           const SizedBox(height: 4),
         ],
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (!mobile)
