@@ -47,23 +47,21 @@ class ContactSection extends StatelessWidget {
                 ?.copyWith(color: AppTheme.white),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 24),
-          if (mobile)
-            ..._links.map((l) => Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: _SocialLink(social: l),
-                ))
-          else
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+          SizedBox(height: mobile ? 32 : 48),
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 680),
+            child: Column(
               children: _links
-                  .map((l) => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        child: _SocialLink(social: l),
+                  .asMap()
+                  .entries
+                  .map((e) => _ContactRow(
+                        social: e.value,
+                        isLast: e.key == _links.length - 1,
                       ))
                   .toList(),
             ),
-          const SizedBox(height: 48),
+          ),
+          const SizedBox(height: 32),
           const ContactForm(),
           const SizedBox(height: 48),
           const Divider(color: AppTheme.darkBrown),
@@ -95,40 +93,83 @@ class _Social {
   });
 }
 
-class _SocialLink extends StatelessWidget {
+class _ContactRow extends StatelessWidget {
   final _Social social;
-  const _SocialLink({required this.social});
+  final bool isLast;
+
+  const _ContactRow({required this.social, required this.isLast});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => launchUrl(Uri.parse(social.url)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+    final mobile = isMobile(context);
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Image.network(
-            'data:image/svg+xml;base64,${base64Encode(utf8.encode(social.svg))}',
-            width: 28,
-            height: 28,
-            errorBuilder: (_, __, ___) => const SizedBox(
-                width: 28,
-                height: 28,
-                child: Icon(Icons.link, color: AppTheme.beige)),
+          Column(
+            children: [
+              Container(
+                width: 14,
+                height: 14,
+                decoration: BoxDecoration(
+                  color: AppTheme.olive,
+                  border: Border.all(color: AppTheme.olive, width: 3),
+                  shape: BoxShape.circle,
+                ),
+              ),
+              if (!isLast)
+                Expanded(
+                  child: Container(
+                    width: 2,
+                    color: AppTheme.beige.withOpacity(0.3),
+                  ),
+                ),
+            ],
           ),
-          const SizedBox(height: 8),
-          Text(
-            social.label.toUpperCase(),
-            style: const TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.w600,
-              color: AppTheme.beige,
-              letterSpacing: 1.5,
+          const SizedBox(width: 20),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(bottom: isLast ? 0 : mobile ? 24 : 32),
+              child: GestureDetector(
+                onTap: () => launchUrl(Uri.parse(social.url)),
+                child: Row(
+                  children: [
+                    Image.network(
+                      'data:image/svg+xml;base64,${base64Encode(utf8.encode(social.svg))}',
+                      width: 24,
+                      height: 24,
+                      errorBuilder: (_, __, ___) => const Icon(
+                          Icons.link,
+                          size: 24,
+                          color: AppTheme.beige),
+                    ),
+                    const SizedBox(width: 12),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          social.label.toUpperCase(),
+                          style: const TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                            color: AppTheme.beige,
+                            letterSpacing: 1.5,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          social.handle,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: AppTheme.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
-          const SizedBox(height: 2),
-          Text(
-            social.handle,
-            style: const TextStyle(fontSize: 13, color: AppTheme.white),
           ),
         ],
       ),
