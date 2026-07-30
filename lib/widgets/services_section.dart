@@ -7,21 +7,27 @@ class ServicesSection extends StatelessWidget {
   static const _services = [
     _Service(
       number: '01',
-      title: 'Mobile App\nDevelopment',
+      title: 'Mobile\nDevelopment',
       desc:
-          'Apps nativas y PWA con Flutter, integración de backend con Supabase o Firebase, autenticación, y despliegue en Play Store y web.',
+          'Apps nativas y PWA con Flutter + Dart. Integración de backend con '
+          'Supabase o Firebase, autenticación, y despliegue en Play Store y web. '
+          'Prototipado acelerado con IA generativa.',
     ),
     _Service(
       number: '02',
       title: 'QA &\nTesting',
       desc:
-          'Diseño y ejecución de casos de prueba funcionales, regresión, integración y UI/UX. Control de calidad end-to-end con reportes.',
+          'Diseño y ejecución de casos de prueba funcionales, regresión, '
+          'integración y UI/UX. Control de calidad end-to-end con reportes '
+          'estructurados en Trello y documentación de criterios de aceptación.',
     ),
     _Service(
       number: '03',
-      title: 'AI-Assisted\nPrototyping',
+      title: 'Project\nManagement',
       desc:
-          'Prototipado rápido asistido por IA Generativa. De la idea a MVP funcional en tiempo récord con código limpio y escalable.',
+          'Planificación y seguimiento de proyectos con metodologías ágiles. '
+          'Gestión de hitos, coordinación de equipos remotos, y comunicación '
+          'estructurada para entregas predecibles y sin fricción.',
     ),
   ];
 
@@ -29,7 +35,7 @@ class ServicesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.fromLTRB(32, 80, 32, 80),
-      color: AppTheme.cream,
+      color: AppTheme.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -37,8 +43,29 @@ class ServicesSection extends StatelessWidget {
             'Services',
             style: Theme.of(context).textTheme.headlineMedium,
           ),
+          const SizedBox(height: 4),
+          Text(
+            'Lo que puedo hacer por tu proyecto',
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
           const SizedBox(height: 40),
-          ..._services.map((s) => _ServiceRow(service: s)),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              return Wrap(
+                spacing: 24,
+                runSpacing: 24,
+                children: _services.map((s) {
+                  final cardWidth = constraints.maxWidth > 800
+                      ? (constraints.maxWidth - 48) / 3
+                      : constraints.maxWidth;
+                  return SizedBox(
+                    width: cardWidth,
+                    child: _ServiceCard(service: s),
+                  );
+                }).toList(),
+              );
+            },
+          ),
         ],
       ),
     );
@@ -56,54 +83,36 @@ class _Service {
   });
 }
 
-class _ServiceRow extends StatelessWidget {
+class _ServiceCard extends StatelessWidget {
   final _Service service;
-  const _ServiceRow({required this.service});
+  const _ServiceCard({required this.service});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 32),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 48,
-                child: Text(
-                  service.number,
-                  style: const TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.w700,
-                    color: AppTheme.beige,
-                    height: 1,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 24),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      service.title,
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      service.desc,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ],
-                ),
-              ),
-            ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          service.number,
+          style: const TextStyle(
+            fontSize: 48,
+            fontWeight: FontWeight.w700,
+            color: AppTheme.beige,
+            height: 1,
           ),
-          const Divider(color: AppTheme.beige, height: 32),
-        ],
-      ),
+        ),
+        const SizedBox(height: 16),
+        Text(
+          service.title,
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+        const SizedBox(height: 12),
+        Text(
+          service.desc,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        const Divider(color: AppTheme.beige, height: 32),
+      ],
     );
   }
 }

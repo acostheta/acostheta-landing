@@ -5,23 +5,17 @@ class SkillsSection extends StatelessWidget {
   const SkillsSection({super.key});
 
   static const _skills = [
-    ('Flutter', 'Framework'),
-    ('Dart', 'Language'),
-    ('Supabase', 'Backend'),
-    ('Firebase', 'Backend'),
-    ('Riverpod', 'State'),
-    ('Gemini AI', 'AI Tools'),
-    ('DeepSeek', 'AI Tools'),
-    ('QA Testing', 'Testing'),
-    ('Git/GitHub', 'DevOps'),
-    ('Project Mgmt', 'Management'),
+    ('Flutter & Dart', 'Mobile & Web'),
+    ('Supabase', 'Backend & Auth'),
+    ('Firebase', 'Backend & Hosting'),
+    ('OpenCode', 'AI-Assisted Dev'),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.fromLTRB(32, 80, 32, 80),
-      color: AppTheme.white,
+      color: AppTheme.cream,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -31,7 +25,7 @@ class SkillsSection extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            'Tecnologías y herramientas que uso',
+            'Tecnologías que uso a diario',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           const SizedBox(height: 40),
@@ -50,7 +44,7 @@ class SkillsSection extends StatelessWidget {
   Widget _buildRow(BuildContext context, int index, String name, String cat) {
     final isEven = index.isEven;
     return Container(
-      width: 200,
+      width: 240,
       padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 12),
       decoration: BoxDecoration(
         border: Border(

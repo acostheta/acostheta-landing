@@ -20,22 +20,14 @@ class ContactSection extends StatelessWidget {
                 .headlineMedium
                 ?.copyWith(color: AppTheme.white),
           ),
-          const SizedBox(height: 4),
-          Text(
-            'acostheta.dev@gmail.com',
-            style: Theme.of(context)
-                .textTheme
-                .displayMedium
-                ?.copyWith(color: AppTheme.olive),
-          ),
           const SizedBox(height: 48),
           Row(
             children: [
-              _contactLink('Email', 'acostheta.dev@gmail.com'),
-              const SizedBox(width: 48),
               _contactLink('LinkedIn', 'linkedin.com/in/acostheta'),
               const SizedBox(width: 48),
-              _contactLink('Location', 'Maturín, Venezuela'),
+              _contactLink('X', 'x.com/acostheta'),
+              const SizedBox(width: 48),
+              _contactLink('Instagram', 'instagram.com/acostheta'),
             ],
           ),
           const SizedBox(height: 48),

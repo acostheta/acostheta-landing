@@ -36,15 +36,6 @@ class ExperienceSection extends StatelessWidget {
         'Ejecución de pruebas de regresión, integración y UI/UX.',
       ],
     ),
-    _Experience(
-      period: '11/2020 – Presente',
-      role: 'Coordinator & Adult Volunteer',
-      subtitle: 'Asociación de Scouts de Venezuela',
-      bullets: [
-        'Gestión de logística y control de calidad educativa.',
-        'Seguimiento de planes de trabajo con principios ágiles.',
-      ],
-    ),
   ];
 
   @override
