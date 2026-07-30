@@ -7,26 +7,23 @@ class ServicesSection extends StatelessWidget {
   static const _services = [
     _Service(
       number: '01',
-      title: 'Desarrollo\nMobile',
+      title: 'Desarrollo Mobile',
       desc:
-          'Apps nativas y PWA con Flutter + Dart. Integración de backend con '
-          'Supabase o Firebase, autenticación, y despliegue en Play Store y web. '
-          'Prototipado acelerado con IA generativa.',
+          'Apps Android, iOS y PWA con Flutter + Dart. Backend con Supabase o '
+          'Firebase, autenticación y publicación en tiendas.',
     ),
     _Service(
       number: '02',
-      title: 'QA y\nTesting',
+      title: 'QA y Testing',
       desc:
-          'Diseño y ejecución de casos de prueba funcionales, regresión, '
-          'integración y UI/UX. Control de calidad end-to-end con reportes '
-          'estructurados en Trello y documentación de criterios de aceptación.',
+          'Casos de prueba funcionales, regresión, integración y UI/UX. '
+          'Control de calidad end-to-end con reportes en Trello.',
     ),
     _Service(
       number: '03',
-      title: 'Gestión de\nProyectos',
+      title: 'Gestión de Proyectos',
       desc:
-          'Planificación y seguimiento de proyectos con metodologías ágiles. '
-          'Gestión de hitos, coordinación de equipos remotos, y comunicación '
+          'Planificación ágil, coordinación de equipos remotos y comunicación '
           'estructurada para entregas predecibles y sin fricción.',
     ),
   ];
@@ -35,26 +32,24 @@ class ServicesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final mobile = isMobile(context);
     return Container(
-      padding: EdgeInsets.fromLTRB(hPad(context), sectionGap(context), hPad(context), sectionGap(context)),
+      padding: EdgeInsets.fromLTRB(
+          hPad(context), sectionGap(context), hPad(context), sectionGap(context)),
       color: AppTheme.white,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             'Servicios',
             style: Theme.of(context).textTheme.headlineMedium,
+            textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 4),
-          Text(
-            'Lo que puedo hacer por tu proyecto',
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-          SizedBox(height: mobile ? 24 : 40),
+          SizedBox(height: mobile ? 32 : 48),
           LayoutBuilder(
             builder: (context, constraints) {
               return Wrap(
                 spacing: 24,
-                runSpacing: 24,
+                runSpacing: 32,
+                alignment: WrapAlignment.center,
                 children: _services.map((s) {
                   final cardWidth = mobile
                       ? constraints.maxWidth
@@ -92,7 +87,7 @@ class _ServiceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final mobile = isMobile(context);
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
           service.number,
@@ -107,11 +102,13 @@ class _ServiceCard extends StatelessWidget {
         Text(
           service.title,
           style: Theme.of(context).textTheme.titleLarge,
+          textAlign: TextAlign.center,
         ),
         const SizedBox(height: 12),
         Text(
           service.desc,
           style: Theme.of(context).textTheme.bodyMedium,
+          textAlign: TextAlign.center,
         ),
         const Divider(color: AppTheme.beige, height: 32),
       ],

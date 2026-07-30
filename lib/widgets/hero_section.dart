@@ -29,7 +29,7 @@ class HeroSection extends StatelessWidget {
           ),
           SizedBox(height: mobile ? 24 : 32),
           Text(
-            'Luis Alberto\nAcosta Jiménez',
+            'Luis Alberto Acosta Jiménez',
             style: Theme.of(context)
                 .textTheme
                 .displayLarge
@@ -38,7 +38,7 @@ class HeroSection extends StatelessWidget {
           ),
           SizedBox(height: mobile ? 12 : 16),
           Text(
-            'Desarrollador Mobile asistido por IA',
+            'Servicios de TI',
             style: Theme.of(context)
                 .textTheme
                 .displayMedium
@@ -47,7 +47,7 @@ class HeroSection extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Flutter  •  QA  •  Gestión de Proyectos',
+            'Desarrollador Mobile  •  QA  •  Gestión de proyectos',
             style: Theme.of(context)
                 .textTheme
                 .labelLarge

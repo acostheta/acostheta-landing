@@ -42,14 +42,16 @@ class ExperienceSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final mobile = isMobile(context);
     return Container(
-      padding: EdgeInsets.fromLTRB(hPad(context), sectionGap(context), hPad(context), sectionGap(context)),
-      color: AppTheme.white,
+      padding: EdgeInsets.fromLTRB(
+          hPad(context), sectionGap(context), hPad(context), sectionGap(context)),
+      color: AppTheme.cream,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             'Experiencia',
             style: Theme.of(context).textTheme.headlineMedium,
+            textAlign: TextAlign.center,
           ),
           SizedBox(height: mobile ? 24 : 40),
           ..._experiences.asMap().entries.map((e) {
@@ -87,7 +89,7 @@ class _ExperienceBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     final mobile = isMobile(context);
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         if (mobile) ...[
           Text(
@@ -120,11 +122,12 @@ class _ExperienceBlock extends StatelessWidget {
             if (!mobile) const SizedBox(width: 24),
             Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     experience.role,
                     style: Theme.of(context).textTheme.titleLarge,
+                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 2),
                   Text(
@@ -133,6 +136,7 @@ class _ExperienceBlock extends StatelessWidget {
                       fontSize: 13,
                       color: AppTheme.darkBrown,
                     ),
+                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 12),
                   ...experience.bullets.map(

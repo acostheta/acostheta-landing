@@ -9,10 +9,11 @@ class ContactSection extends StatelessWidget {
     final mobile = isMobile(context);
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.fromLTRB(hPad(context), sectionGap(context), hPad(context), sectionGap(context)),
+      padding: EdgeInsets.fromLTRB(
+          hPad(context), sectionGap(context), hPad(context), sectionGap(context)),
       color: AppTheme.nearBlack,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             'Contacto',
@@ -20,6 +21,7 @@ class ContactSection extends StatelessWidget {
                 .textTheme
                 .headlineMedium
                 ?.copyWith(color: AppTheme.white),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 24),
           if (mobile) ...[
@@ -30,6 +32,7 @@ class ContactSection extends StatelessWidget {
             _contactLink('Instagram', 'instagram.com/acostheta'),
           ] else ...[
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _contactLink('LinkedIn', 'linkedin.com/in/acostheta'),
                 const SizedBox(width: 48),
@@ -44,6 +47,7 @@ class ContactSection extends StatelessWidget {
           const SizedBox(height: 24),
           Text(
             '© 2026 Luis Acosta',
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 12,
               color: AppTheme.beige.withOpacity(0.6),
@@ -56,7 +60,7 @@ class ContactSection extends StatelessWidget {
 
   Widget _contactLink(String label, String value) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
           label.toUpperCase(),
