@@ -18,10 +18,18 @@ class HeroSection extends StatelessWidget {
       ),
       child: Column(
         children: [
-          CircleAvatar(
-            radius: 60,
-            backgroundColor: Colors.white.withOpacity(0.2),
-            child: const Icon(Icons.person, size: 60, color: Colors.white),
+          ClipOval(
+            child: Image.network(
+              '/images/afoto.jpg',
+              width: 120,
+              height: 120,
+              fit: BoxFit.cover,
+              errorBuilder: (_, __, ___) => CircleAvatar(
+                radius: 60,
+                backgroundColor: Colors.white.withOpacity(0.2),
+                child: const Icon(Icons.person, size: 60, color: Colors.white),
+              ),
+            ),
           ),
           const SizedBox(height: 24),
           Text(
