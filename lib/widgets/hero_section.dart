@@ -38,7 +38,7 @@ class HeroSection extends StatelessWidget {
           ),
           SizedBox(height: mobile ? 12 : 16),
           Text(
-            'AI-Assisted Mobile Developer',
+            'Desarrollador Mobile asistido por IA',
             style: Theme.of(context)
                 .textTheme
                 .displayMedium
@@ -47,7 +47,7 @@ class HeroSection extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Flutter  •  QA  •  Project Management',
+            'Flutter  •  QA  •  Gestión de Proyectos',
             style: Theme.of(context)
                 .textTheme
                 .labelLarge
@@ -66,7 +66,7 @@ class HeroSection extends StatelessWidget {
                 shape: const RoundedRectangleBorder(),
               ),
               child: const Text(
-                'CONTACT',
+                'CONTACTO',
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13, letterSpacing: 2),
               ),
             ),

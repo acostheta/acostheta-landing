@@ -7,7 +7,7 @@ class ServicesSection extends StatelessWidget {
   static const _services = [
     _Service(
       number: '01',
-      title: 'Mobile\nDevelopment',
+      title: 'Desarrollo\nMobile',
       desc:
           'Apps nativas y PWA con Flutter + Dart. Integración de backend con '
           'Supabase o Firebase, autenticación, y despliegue en Play Store y web. '
@@ -15,7 +15,7 @@ class ServicesSection extends StatelessWidget {
     ),
     _Service(
       number: '02',
-      title: 'QA &\nTesting',
+      title: 'QA y\nTesting',
       desc:
           'Diseño y ejecución de casos de prueba funcionales, regresión, '
           'integración y UI/UX. Control de calidad end-to-end con reportes '
@@ -23,7 +23,7 @@ class ServicesSection extends StatelessWidget {
     ),
     _Service(
       number: '03',
-      title: 'Project\nManagement',
+      title: 'Gestión de\nProyectos',
       desc:
           'Planificación y seguimiento de proyectos con metodologías ágiles. '
           'Gestión de hitos, coordinación de equipos remotos, y comunicación '
@@ -41,7 +41,7 @@ class ServicesSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Services',
+            'Servicios',
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           const SizedBox(height: 4),

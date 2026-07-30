@@ -7,7 +7,7 @@ class ExperienceSection extends StatelessWidget {
   static const _experiences = [
     _Experience(
       period: '12/2025 – 07/2026',
-      role: 'Flutter Developer',
+      role: 'Desarrollador Flutter',
       subtitle: 'Progrese Asesoría · México (Remoto)',
       bullets: [
         'Apps multiplataforma Android/Web con Flutter, Dart, Riverpod y Supabase.',
@@ -18,7 +18,7 @@ class ExperienceSection extends StatelessWidget {
     ),
     _Experience(
       period: '10/2024 – 12/2025',
-      role: 'Web & No-Code Developer',
+      role: 'Desarrollador Web y No-Code',
       subtitle: 'Progrese Asesoría · México (Remoto)',
       bullets: [
         'Soluciones empresariales con Google AppSheet.',
@@ -28,7 +28,7 @@ class ExperienceSection extends StatelessWidget {
     ),
     _Experience(
       period: '07/2023 – 06/2024',
-      role: 'QA Analyst',
+      role: 'Analista QA',
       subtitle: 'Alaxatech · Remoto',
       bullets: [
         'Gestión de planes de prueba end-to-end en Trello.',
@@ -48,7 +48,7 @@ class ExperienceSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Experience',
+            'Experiencia',
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           SizedBox(height: mobile ? 24 : 40),

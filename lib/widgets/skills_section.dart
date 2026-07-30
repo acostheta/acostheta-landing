@@ -5,10 +5,10 @@ class SkillsSection extends StatelessWidget {
   const SkillsSection({super.key});
 
   static const _skills = [
-    ('Flutter & Dart', 'Mobile & Web'),
-    ('Supabase', 'Backend & Auth'),
-    ('Firebase', 'Backend & Hosting'),
-    ('OpenCode', 'AI-Assisted Dev'),
+    ('Flutter & Dart', 'Mobile y Web'),
+    ('Supabase', 'Backend y Auth'),
+    ('Firebase', 'Backend y Hosting'),
+    ('OpenCode', 'Dev asistido por IA'),
   ];
 
   @override

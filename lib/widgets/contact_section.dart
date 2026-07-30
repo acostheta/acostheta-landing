@@ -15,7 +15,7 @@ class ContactSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Contact',
+            'Contacto',
             style: Theme.of(context)
                 .textTheme
                 .headlineMedium
