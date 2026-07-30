@@ -6,9 +6,10 @@ class ContactSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mobile = isMobile(context);
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(32, 80, 32, 80),
+      padding: EdgeInsets.fromLTRB(hPad(context), sectionGap(context), hPad(context), sectionGap(context)),
       color: AppTheme.nearBlack,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -20,16 +21,24 @@ class ContactSection extends StatelessWidget {
                 .headlineMedium
                 ?.copyWith(color: AppTheme.white),
           ),
-          const SizedBox(height: 48),
-          Row(
-            children: [
-              _contactLink('LinkedIn', 'linkedin.com/in/acostheta'),
-              const SizedBox(width: 48),
-              _contactLink('X', 'x.com/acostheta'),
-              const SizedBox(width: 48),
-              _contactLink('Instagram', 'instagram.com/acostheta'),
-            ],
-          ),
+          const SizedBox(height: 24),
+          if (mobile) ...[
+            _contactLink('LinkedIn', 'linkedin.com/in/acostheta'),
+            const SizedBox(height: 16),
+            _contactLink('X', 'x.com/acostheta'),
+            const SizedBox(height: 16),
+            _contactLink('Instagram', 'instagram.com/acostheta'),
+          ] else ...[
+            Row(
+              children: [
+                _contactLink('LinkedIn', 'linkedin.com/in/acostheta'),
+                const SizedBox(width: 48),
+                _contactLink('X', 'x.com/acostheta'),
+                const SizedBox(width: 48),
+                _contactLink('Instagram', 'instagram.com/acostheta'),
+              ],
+            ),
+          ],
           const SizedBox(height: 48),
           const Divider(color: AppTheme.darkBrown),
           const SizedBox(height: 24),
@@ -61,10 +70,7 @@ class ContactSection extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           value,
-          style: const TextStyle(
-            fontSize: 14,
-            color: AppTheme.white,
-          ),
+          style: const TextStyle(fontSize: 14, color: AppTheme.white),
         ),
       ],
     );

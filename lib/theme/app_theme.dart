@@ -59,3 +59,9 @@ class AppTheme {
         ),
       );
 }
+
+bool isMobile(BuildContext context) =>
+    MediaQuery.of(context).size.width < 720;
+
+double hPad(BuildContext context) => isMobile(context) ? 24.0 : 32.0;
+double sectionGap(BuildContext context) => isMobile(context) ? 56.0 : 80.0;

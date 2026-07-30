@@ -33,8 +33,9 @@ class ServicesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mobile = isMobile(context);
     return Container(
-      padding: const EdgeInsets.fromLTRB(32, 80, 32, 80),
+      padding: EdgeInsets.fromLTRB(hPad(context), sectionGap(context), hPad(context), sectionGap(context)),
       color: AppTheme.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,16 +49,16 @@ class ServicesSection extends StatelessWidget {
             'Lo que puedo hacer por tu proyecto',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
-          const SizedBox(height: 40),
+          SizedBox(height: mobile ? 24 : 40),
           LayoutBuilder(
             builder: (context, constraints) {
               return Wrap(
                 spacing: 24,
                 runSpacing: 24,
                 children: _services.map((s) {
-                  final cardWidth = constraints.maxWidth > 800
-                      ? (constraints.maxWidth - 48) / 3
-                      : constraints.maxWidth;
+                  final cardWidth = mobile
+                      ? constraints.maxWidth
+                      : (constraints.maxWidth - 48) / 3;
                   return SizedBox(
                     width: cardWidth,
                     child: _ServiceCard(service: s),
@@ -89,13 +90,14 @@ class _ServiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mobile = isMobile(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           service.number,
-          style: const TextStyle(
-            fontSize: 48,
+          style: TextStyle(
+            fontSize: mobile ? 36 : 48,
             fontWeight: FontWeight.w700,
             color: AppTheme.beige,
             height: 1,

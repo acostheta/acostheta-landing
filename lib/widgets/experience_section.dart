@@ -40,8 +40,9 @@ class ExperienceSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mobile = isMobile(context);
     return Container(
-      padding: const EdgeInsets.fromLTRB(32, 80, 32, 80),
+      padding: EdgeInsets.fromLTRB(hPad(context), sectionGap(context), hPad(context), sectionGap(context)),
       color: AppTheme.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +51,7 @@ class ExperienceSection extends StatelessWidget {
             'Experience',
             style: Theme.of(context).textTheme.headlineMedium,
           ),
-          const SizedBox(height: 40),
+          SizedBox(height: mobile ? 24 : 40),
           ..._experiences.asMap().entries.map((e) {
             return _ExperienceBlock(
               experience: e.value,
@@ -84,25 +85,39 @@ class _ExperienceBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mobile = isMobile(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        if (mobile) ...[
+          Text(
+            experience.period,
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: AppTheme.darkBrown,
+              letterSpacing: 0.5,
+            ),
+          ),
+          const SizedBox(height: 4),
+        ],
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              width: 120,
-              child: Text(
-                experience.period,
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  color: AppTheme.darkBrown,
-                  letterSpacing: 0.5,
+            if (!mobile)
+              SizedBox(
+                width: 120,
+                child: Text(
+                  experience.period,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: AppTheme.darkBrown,
+                    letterSpacing: 0.5,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(width: 24),
+            if (!mobile) const SizedBox(width: 24),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,9 +144,7 @@ class _ExperienceBlock extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 7),
                             child: Container(
-                                width: 6,
-                                height: 6,
-                                color: AppTheme.olive),
+                                width: 6, height: 6, color: AppTheme.olive),
                           ),
                           const SizedBox(width: 10),
                           Expanded(
@@ -153,7 +166,7 @@ class _ExperienceBlock extends StatelessWidget {
             ),
           ],
         ),
-        if (!isLast) const Divider(color: AppTheme.beige, height: 48),
+        if (!isLast) const Divider(color: AppTheme.beige, height: 32),
       ],
     );
   }

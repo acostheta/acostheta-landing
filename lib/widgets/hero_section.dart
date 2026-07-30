@@ -6,42 +6,43 @@ class HeroSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mobile = isMobile(context);
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(32, 80, 32, 64),
+      padding: EdgeInsets.fromLTRB(hPad(context), mobile ? 64 : 80, hPad(context), mobile ? 48 : 64),
       color: AppTheme.nearBlack,
       child: Column(
         children: [
           ClipOval(
             child: Image.network(
               '/images/afoto.jpg',
-              width: 100,
-              height: 100,
+              width: mobile ? 80 : 100,
+              height: mobile ? 80 : 100,
               fit: BoxFit.cover,
               errorBuilder: (_, __, ___) => Container(
-                width: 100,
-                height: 100,
+                width: mobile ? 80 : 100,
+                height: mobile ? 80 : 100,
                 color: AppTheme.darkBrown,
-                child: const Icon(Icons.person, color: AppTheme.white),
+                child: Icon(Icons.person, color: AppTheme.white, size: mobile ? 48 : 60),
               ),
             ),
           ),
-          const SizedBox(height: 32),
+          SizedBox(height: mobile ? 24 : 32),
           Text(
             'Luis Alberto\nAcosta Jiménez',
             style: Theme.of(context)
                 .textTheme
                 .displayLarge
-                ?.copyWith(color: AppTheme.white),
+                ?.copyWith(color: AppTheme.white, fontSize: mobile ? 28 : 40),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: mobile ? 12 : 16),
           Text(
             'AI-Assisted Mobile Developer',
             style: Theme.of(context)
                 .textTheme
                 .displayMedium
-                ?.copyWith(color: AppTheme.olive),
+                ?.copyWith(color: AppTheme.olive, fontSize: mobile ? 22 : 28),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
@@ -53,9 +54,9 @@ class HeroSection extends StatelessWidget {
                 ?.copyWith(color: AppTheme.beige),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 48),
+          SizedBox(height: mobile ? 36 : 48),
           SizedBox(
-            width: 200,
+            width: mobile ? double.infinity : 200,
             child: OutlinedButton(
               onPressed: () {},
               style: OutlinedButton.styleFrom(
@@ -66,10 +67,7 @@ class HeroSection extends StatelessWidget {
               ),
               child: const Text(
                 'CONTACT',
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 13,
-                    letterSpacing: 2),
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13, letterSpacing: 2),
               ),
             ),
           ),
