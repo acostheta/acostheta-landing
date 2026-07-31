@@ -87,31 +87,36 @@ class _ServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mobile = isMobile(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Image.network(
-          'data:image/svg+xml;base64,${base64Encode(utf8.encode(service.svg))}',
-          width: mobile ? 36 : 48,
-          height: mobile ? 36 : 48,
-          errorBuilder: (_, __, ___) => const SizedBox(
-              width: 48, height: 48,
-              child: Icon(Icons.code, color: AppTheme.beige)),
-        ),
-        const SizedBox(height: 16),
-        Text(
-          service.title,
-          style: Theme.of(context).textTheme.titleLarge,
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 12),
-        Text(
-          service.desc,
-          style: Theme.of(context).textTheme.bodyMedium,
-          textAlign: TextAlign.center,
-        ),
-        const Divider(color: AppTheme.beige, height: 32),
-      ],
+    return Container(
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        border: Border.all(color: AppTheme.beige.withOpacity(0.4)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image.network(
+            'data:image/svg+xml;base64,${base64Encode(utf8.encode(service.svg))}',
+            width: mobile ? 36 : 48,
+            height: mobile ? 36 : 48,
+            errorBuilder: (_, __, ___) => const SizedBox(
+                width: 48, height: 48,
+                child: Icon(Icons.code, color: AppTheme.beige)),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            service.title,
+            style: Theme.of(context).textTheme.titleLarge,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 12),
+          Text(
+            service.desc,
+            style: Theme.of(context).textTheme.bodyMedium,
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
     );
   }
 }

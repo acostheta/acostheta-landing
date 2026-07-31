@@ -31,9 +31,9 @@ class ExperienceSection extends StatelessWidget {
       role: 'Analista QA',
       subtitle: 'Alaxatech · Remoto',
       bullets: [
-        'Gestión de planes de prueba end-to-end en Trello.',
-        'Documentación funcional y especificación de casos de prueba.',
-        'Ejecución de pruebas de regresión, integración y UI/UX.',
+        'Gestión de flujos de prueba y trazabilidad: diseñé, administré y ejecuté planes de prueba integrales para apps web y móviles, organizando la trazabilidad de errores, niveles de severidad y ciclo de vida de bugs en Trello.',
+        'Definición de criterios y documentación: redacté especificaciones funcionales, historias de usuario y Test Cases detallados para guiar al equipo de desarrollo.',
+        'Aseguramiento de calidad end-to-end: ejecuté pruebas funcionales, de regresión, integración y verificación UI/UX garantizando entregas estables antes de cada lanzamiento.',
       ],
     ),
   ];
