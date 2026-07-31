@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 
 class HeroSection extends StatelessWidget {
-  const HeroSection({super.key});
+  final VoidCallback? onContactTap;
+  const HeroSection({super.key, this.onContactTap});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +59,7 @@ class HeroSection extends StatelessWidget {
           SizedBox(
             width: mobile ? double.infinity : 200,
             child: OutlinedButton(
-              onPressed: () {},
+              onPressed: onContactTap,
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppTheme.white,
                 side: const BorderSide(color: AppTheme.white, width: 1.5),
