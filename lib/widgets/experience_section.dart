@@ -28,10 +28,32 @@ class ExperienceSection extends StatelessWidget {
     ),
     _Experience(
       period: '07/2023 – 06/2024',
-      role: 'Analista QA',
+      role: 'Project Manager',
       subtitle: 'Alaxatech · Remoto',
       bullets: [
-        'Lideré la garantía de calidad de software mediante la creación de Casos de Prueba, ejecución de pruebas funcionales y de regresión, y la gestión del ciclo de vida de bugs organizada en Trello, garantizando entregas estables y sin errores críticos.',
+        'Gestión de métricas y roadmap: planificación y ejecución del roadmap, definición de sprints y monitoreo de métricas clave.',
+        'Liderazgo ágil y ceremonias Scrum: facilitación de Sprint Planning, refinamiento de HU, retrospectivas y demos usando ClickUp y Parabol.',
+        'Gestión de stakeholders: traducción de requerimientos del cliente en tareas accionables, priorización de riesgos y coordinación de equipos.',
+        'Documentación centralizada en Notion.',
+      ],
+    ),
+    _Experience(
+      period: '02/2023 – 07/2023',
+      role: 'Product Owner',
+      subtitle: 'Alaxatech · Remoto',
+      bullets: [
+        'Levantamiento de requerimientos funcionales y definición de la visión del producto de software.',
+        'Liderazgo de proyectos en equipos multidisciplinarios bajo metodologías ágiles.',
+        'Seguimiento del avance mediante ClickUp e identificación de nuevas oportunidades de valor.',
+      ],
+    ),
+    _Experience(
+      period: '07/2021 – 01/2023',
+      role: 'QA Analyst',
+      subtitle: 'Alaxatech · Remoto',
+      bullets: [
+        'Ejecución de pruebas funcionales, de interfaz y experiencia de usuario (UI/UX) y Pruebas de Aceptación del Usuario (UAT).',
+        'Administración del ciclo de vida de Bug Fixing y trazabilidad de errores a través de Trello.',
       ],
     ),
   ];
