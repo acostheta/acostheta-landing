@@ -101,36 +101,45 @@ class _SocialLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => launchUrl(Uri.parse(social.url)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.network(
-            'data:image/svg+xml;base64,${base64Encode(utf8.encode(social.svg))}',
-            width: 28,
-            height: 28,
-            errorBuilder: (_, __, ___) => const SizedBox(
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () => launchUrl(Uri.parse(social.url)),
+        borderRadius: BorderRadius.circular(4),
+        hoverColor: AppTheme.beige.withOpacity(0.1),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.network(
+                'data:image/svg+xml;base64,${base64Encode(utf8.encode(social.svg))}',
                 width: 28,
                 height: 28,
-                child: Icon(Icons.link, color: AppTheme.beige)),
+                errorBuilder: (_, __, ___) => const SizedBox(
+                    width: 28,
+                    height: 28,
+                    child: Icon(Icons.link, color: AppTheme.beige)),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                social.label.toUpperCase(),
+                style: const TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w600,
+                  color: AppTheme.beige,
+                  letterSpacing: 1.5,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                social.handle,
+                style: const TextStyle(fontSize: 13, color: AppTheme.white),
+              ),
+            ],
           ),
-          const SizedBox(height: 8),
-          Text(
-            social.label.toUpperCase(),
-            style: const TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.w600,
-              color: AppTheme.beige,
-              letterSpacing: 1.5,
-            ),
-          ),
-          const SizedBox(height: 2),
-          Text(
-            social.handle,
-            style: const TextStyle(fontSize: 13, color: AppTheme.white),
-          ),
-        ],
+        ),
       ),
     );
   }
